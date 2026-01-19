@@ -2,7 +2,12 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { SmartParseResult } from "../types";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+const apiKey = process.env.GEMINI_API_KEY || process.env.API_KEY || '';
+if (!apiKey) {
+  console.warn("GEMINI_API_KEY is not set in environment variables.");
+}
+
+const ai = new GoogleGenAI({ apiKey });
 
 export const parseMeasurement = async (input: string): Promise<SmartParseResult | null> => {
   try {
