@@ -9,7 +9,7 @@ steps:
       - 'build'
       - 'gcr.io/$PROJECT_ID/precision-converter'
       - '--builder'
-      - 'gcr.io/buildpacks/builder:v1'
+      - 'gcr.io/buildpacks/builder:google-22'
 
 options:
   logging: CLOUD_LOGGING_ONLY
