@@ -1,0 +1,18 @@
+# This file configures the Google Cloud Build process.
+# It resolves the "build.service_account" logging error by explicitly
+# setting logging to CLOUD_LOGGING_ONLY.
+
+steps:
+  # Build the container image using Buildpacks
+  - name: 'gcr.io/k8s-skaffold/pack'
+    args:
+      - 'build'
+      - 'gcr.io/$PROJECT_ID/precision-converter'
+      - '--builder'
+      - 'gcr.io/buildpacks/builder:v1'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+
+images:
+  - 'gcr.io/$PROJECT_ID/precision-converter'
